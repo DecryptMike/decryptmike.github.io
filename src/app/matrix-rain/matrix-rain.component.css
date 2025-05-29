@@ -1,0 +1,17 @@
+:host { /* :host targets the component's host element (<app-matrix-rain>) */
+    display: block; /* Ensures the component takes up space */
+    position: fixed; /* Use fixed to cover the entire viewport, even on scroll */
+    top: 0;
+    left: 0;
+    width: 100vw;   /* 100% of viewport width */
+    height: 100vh;  /* 100% of viewport height */
+    z-index: -1;    /* Place it behind other content */
+    overflow: hidden; /* Prevent scrollbars from the canvas itself */
+    background-color: black; /* Fallback background color */
+  }
+  
+  canvas {
+    display: block; /* Remove any default canvas spacing */
+    width: 100%;
+    height: 100%;
+  }

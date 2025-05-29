@@ -1,0 +1,31 @@
+.footer-container {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+    color: #34d399; /* Green text color */
+    padding: 1.5rem 2rem;
+    text-align: center;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+    margin-top: auto; /* Pushes the footer to the bottom if content is short */
+    width: 100%;
+  }
+  
+  .footer-container p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+  
+  .footer-container .social-links {
+    margin-top: 0.8rem;
+  }
+  
+  .footer-container .social-links a {
+    color: #34d399;
+    text-decoration: none;
+    margin: 0 0.7rem;
+    font-weight: 500;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+  
+  .footer-container .social-links a:hover {
+    color: #6ee7b7; /* Lighter green on hover */
+    text-shadow: 0 0 8px #6ee7b7;
+  }

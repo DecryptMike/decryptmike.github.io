@@ -1,1 +1,82 @@
-/* You can add global styles to this file, and also import other style files */
+/* src/styles.css */
+
+/* CUSTOM FONT DEFINITION - THIS IS CRITICAL! */
+@font-face {
+  font-family: 'Matrix Regular';
+  src: url('./assets/fonts/Matrix-MZ4P.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* GLOBAL BASE STYLES */
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    /* IMPORTANT: If you want scrollbars to appear and be styled,
+       you must NOT set overflow: hidden; globally like this.
+       Consider changing to overflow-y: auto; or setting overflow
+       on specific content wrappers that need scrolling. */
+    /* For now, keeping your original 'overflow: hidden;' but noting it. */
+    overflow: hidden;
+    font-family: sans-serif; /* Fallback font */
+}
+
+/* CONTENT WRAPPER FOR LAYERING */
+.content-wrapper {
+    position: relative; /* Essential for z-index to work against fixed background */
+    z-index: 1;         /* Ensures it's above the matrix rain */
+    min-height: 100vh;  /* Make sure it's at least viewport height */
+    display: flex;
+    flex-direction: column;
+    background-color: transparent; /* Ensure it's not blocking the rain */
+}
+
+.main-content {
+    flex-grow: 1; /* Allows main content to take up available space */
+    padding: 20px; /* Example padding */
+    color: #eee; /* Light text color for contrast */
+}
+
+/* THEME VARIABLES (if you use them) */
+:root {
+  --primary-bg: #fff;
+  --text-color: #333;
+}
+
+body.dark-theme {
+  --primary-bg: #222;
+  --text-color: #f0f0f0;
+}
+
+/* SCROLLBAR STYLING - ADDED HERE */
+
+/* WebKit (Chrome, Safari, Edge, Opera) scrollbar styling */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the vertical scrollbar */
+  height: 12px; /* Height of the horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.4); /* Dark background for the track */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #34d399; /* Green color for the scroll thumb */
+  border-radius: 10px;
+  border: 3px solid rgba(0, 0, 0, 0.6); /* Space around the thumb */
+  box-shadow: 0 0 5px rgba(52, 211, 153, 0.5); /* Subtle glow */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #6ee7b7; /* Lighter green on hover */
+  box-shadow: 0 0 8px #6ee7b7; /* More prominent glow on hover */
+}
+
+/* For Firefox (newer versions support some styling) */
+html {
+  scrollbar-color: #34d399 rgba(0, 0, 0, 0.4); /* thumb color track color */
+  scrollbar-width: thin; /* 'auto' or 'thin' or 'none' */
+}

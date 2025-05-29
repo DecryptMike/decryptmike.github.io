@@ -1,0 +1,195 @@
+/* src/app/portfolio/portfolio.component.css */
+
+.portfolio-container {
+    padding: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: #e0e0e0;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(52, 211, 153, 0.3);
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .portfolio-title {
+    font-size: 3rem;
+    color: #34d399;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px #34d399;
+    font-family: 'Matrix Regular', monospace;
+  }
+  
+  .portfolio-summary {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 0 20px;
+  }
+  
+  /* CSS Grid for arranging repository items */
+  .repo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 0 20px;
+    justify-content: center;
+  }
+  
+  .repo-item {
+    background-color: rgba(10, 20, 10, 0.7);
+    border: 1px solid rgba(52, 211, 153, 0.4);
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 0 10px rgba(52, 211, 153, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 280px; /* Adjusted as per previous request */
+    justify-content: space-between;
+  }
+  
+  .repo-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(52, 211, 153, 0.4);
+  }
+  
+  /* Styles for the Repository Name (Headline) */
+  .repo-name-wrapper {
+    margin-bottom: 15px;
+  }
+  
+  .repo-name {
+    font-size: 1.3rem; /* Made glowing text smaller (from 1.5rem to 1.3rem) */
+    color: #34d399;
+    margin: 0;
+    text-shadow: 0 0 3px #34d399; /* Smaller glow effect */
+    font-family: 'Matrix Regular', monospace;
+  }
+  
+  .repo-name a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+  }
+  
+  .repo-name a:hover {
+    color: #6ee7b7;
+    text-shadow: 0 0 6px #6ee7b7; /* Adjusted hover glow */
+    text-decoration: underline; /* Still want underline on hover for repo name link */
+    text-underline-offset: 3px;
+  }
+  
+  /* Horizontal separator line */
+  .repo-separator {
+    width: 80%;
+    height: 1px;
+    background-color: rgba(52, 211, 153, 0.4);
+    margin-bottom: 15px;
+  }
+  
+  .repo-description {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #c0c0c0;
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+  
+  /* Styles for the "View" link (NO BOX) */
+  .view-project-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none; /* REMOVED UNDERLINE */
+    color: #34d399; /* Set to green color */
+    font-size: 1.1rem;
+    font-weight: bold;
+    /* Removed padding, border, background-color, border-radius, box-shadow for no box */
+    transition: color 0.3s ease, text-shadow 0.3s ease; /* Transition for text/arrow glow */
+    margin-top: auto; /* Pushes the button to the bottom of the flex container */
+    /* Added text-shadow for subtle glow */
+    text-shadow: 0 0 3px rgba(52, 211, 153, 0.5); /* Subtle glow for the entire link */
+  }
+  
+  .view-project-btn:hover {
+    color: #6ee7b7; /* Lighter green text on hover */
+    text-shadow: 0 0 8px #6ee7b7; /* More prominent glow on hover */
+  }
+  
+  .view-project-btn .view-text {
+    margin-right: 8px;
+  }
+  
+  /* CSS for the custom arrow shape */
+  .view-project-btn .arrow-shape {
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 10px solid #34d399; /* Arrow color is green */
+    transition: border-left-color 0.3s ease, text-shadow 0.3s ease; /* Added text-shadow to transition */
+  }
+  
+  .view-project-btn:hover .arrow-shape {
+    border-left-color: #6ee7b7; /* Change arrow color to lighter green on hover */
+    filter: drop-shadow(0 0 3px #6ee7b7); /* Add glow to the arrow on hover */
+  }
+  
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .portfolio-container {
+      padding: 20px;
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+  
+    .portfolio-title {
+      font-size: 2.2rem;
+    }
+  
+    .portfolio-summary {
+      font-size: 1rem;
+      padding: 0 10px;
+    }
+  
+    .repo-grid {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      padding: 0;
+    }
+  
+    .repo-item {
+      padding: 20px;
+      min-height: 250px;
+    }
+  
+    .repo-name {
+      font-size: 1.2rem;
+    }
+  
+    .view-project-btn {
+      font-size: 1rem;
+      padding: 0; /* Remove padding for mobile as well */
+      text-shadow: 0 0 2px rgba(52, 211, 153, 0.5); /* Adjust glow for mobile */
+    }
+  
+    .view-project-btn:hover {
+      text-shadow: 0 0 6px #6ee7b7;
+    }
+  
+    .view-project-btn .arrow-shape {
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+      border-left: 8px solid #34d399;
+    }
+  
+    .view-project-btn:hover .arrow-shape {
+      filter: drop-shadow(0 0 2px #6ee7b7); /* Adjust glow for mobile */
+    }
+  }
