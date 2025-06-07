@@ -16,32 +16,41 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
 /* Styles for the logo container (the <a> tag) */
 .header-container nav .logo {
-  display: flex; /* Make it a flex container to align image and text */
-  align-items: center; /* Vertically center the image and text */
-  text-decoration: none; /* Remove underline from the link */
-  color: inherit; /* Inherit color from header-container */
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
 }
 
 /* Styles for the logo image */
 .header-container nav .logo-image {
-  height: 30px; /* Set a specific height for the logo */
-  width: auto; /* Maintain aspect ratio */
-  margin-right: 8px; /* Space between logo image and text */
+  height: 59px;
+  width: 59px;
+  margin-right: 8px;
+
+  filter: drop-shadow(0 0 5px #34d399);
+  transition: filter 0.3s ease;
 }
 
-/* Styles for the "DecryptMike" text - THIS IS THE CRITICAL PART FOR THE FONT */
+/* Optional Hover effect for the logo image */
+.header-container nav .logo-image:hover {
+  filter: drop_shadow(0 0 10px #34d399);
+}
+
+
+/* Styles for the "DecryptMike" text */
 .header-container nav .logo-text {
-  font-size: 1.5rem; /* Adjust font size as needed */
-  font-weight: bold; /* Make the text bold */
-  color: #34d399; /* Example color, match your design */
-  text-shadow: 0 0 5px #34d399; /* Optional glow effect */
-  font-family: 'Matrix Regular', sans-serif; /* APPLY THE CUSTOM FONT HERE, with a fallback */
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #34d399;
+  text-shadow: 0 0 5px #34d399;
+  font-family: 'Matrix', sans-serif;
 }
 
 /* Styles for the navigation links list */
@@ -50,31 +59,120 @@
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 1.5rem; /* Space between navigation items */
+  gap: 1.9rem;
 }
 
 /* Styles for individual navigation links */
 .header-container .nav-links a {
   color: #34d399;
-  text-decoration: none; /* Start with no underline */
-  font-weight: 500;
-  transition: color 0.3s ease, text-shadow 0.3s ease, text-decoration 0.3s ease, text-underline-offset 0.3s ease; /* Add text-decoration and text-underline-offset to transition */
+  text-decoration: none; /* Crucial: Remove default browser underline */
+  font-family: 'Matrix 1', sans-serif;
+  font-weight: 680;
+  position: relative; /* CRITICAL: Establishes positioning context for the ::after pseudo-element */
+  padding-bottom: 3px; /* Adds space for the underline below the text */
+
+  /* --- NEW/ADJUSTED: This is the key change to try --- */
+  display: inline-block; /* Often solves pseudo-element rendering issues on inline elements */
+
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
-/* Hover effect: Underline with green color */
+/* --- Pseudo-element for the animated underline --- */
+.header-container .nav-links a::after {
+  content: ''; /* Required for pseudo-elements */
+  position: absolute;
+  left: 0;
+  bottom: 0; /* Position the underline at the bottom of the link */
+  width: 0; /* Start with no width (invisible) */
+  height: 2px; /* Thickness of the underline */
+  background-color: #6ee7b7; /* Your lighter green underline color */
+  transition: width 0.3s ease-out; /* Smooth transition for width change */
+  z-index: 1; /* Ensure it's above other elements if there's a conflict */
+}
+
+/* --- Hover effect for the animated underline --- */
+.header-container .nav-links a:hover::after {
+  width: 100%; /* Expand to full width on hover */
+}
+
+/* Hover effect for the text itself (color and glow) */
 .header-container .nav-links a:hover {
   color: #6ee7b7; /* Lighter green on hover */
   text-shadow: 0 0 8px #6ee7b7;
-  text-decoration: underline; /* Show underline on hover */
-  text-decoration-color: #6ee7b7; /* Green underline color */
-  text-underline-offset: 4px; /* Adjust distance of underline from text */
 }
 
 /* Active link style: Stays underlined with green color */
 .header-container .nav-links a.active-link {
   color: #6ee7b7; /* Keep the active color */
   text-shadow: 0 0 8px #6ee7b7; /* Keep the active glow */
-  text-decoration: underline; /* Keep underline active */
-  text-decoration-color: #6ee7b7; /* Green underline color */
-  text-underline-offset: 4px; /* Adjust distance */
+}
+
+/* --- Active link pseudo-element style --- */
+.header-container .nav-links a.active-link::after {
+  content: ''; /* Required for pseudo-elements */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%; /* Fully visible for active link */
+  height: 2px;
+  background-color: #6ee7b7; /* Green underline color */
+}
+
+
+/* --- GLOW AND PULSATION ANIMATION FOR .logo-image --- */
+
+/* Keyframes for the pulsating glow animation */
+@keyframes pulsate-glow {
+  0% {
+    filter: drop-shadow(0 0 5px #34d399);
+  }
+  50% {
+    filter: drop-shadow(0 0 12px #34d399);
+  }
+  100% {
+    filter: drop-shadow(0 0 5px #34d399);
+  }
+}
+
+/* Apply the animation to the logo image when it has the 'pulsating' class */
+.logo-image.pulsating {
+  animation: pulsate-glow 2s infinite ease-in-out;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 992px) {
+  .header-container nav {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  .logo {
+    margin-bottom: 15px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .header-container {
+    padding: 10px 15px;
+  }
+
+  .logo-image {
+    height: 48px;
+    width: 48px;
+  }
+
+  .logo-text {
+    font-size: 1.5rem;
+  }
+
+  .nav-links li a {
+    font-size: 1rem;
+  }
 }

@@ -1,0 +1,123 @@
+/* src/app/app.component.css - COMPLETE AND CORRECTED VERSION */
+
+/* Global body and html settings for full height and no overflow */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrollbar during transitions */
+  background-color: #000; /* Ensure a black background for the body */
+}
+
+/* app-root as the main application container */
+app-root {
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack children (header, content, footer) vertically */
+  min-height: 100vh; /* Make app-root take at least the full viewport height */
+  position: relative; /* Provides context for any absolutely positioned children within app-root */
+  overflow: hidden; /* Important: Prevents content from overflowing app-root during transitions */
+  width: 100%; /* Ensure app-root takes full width */
+}
+
+/* Matrix Rain Background - position: fixed is correct here */
+app-matrix-rain {
+  position: fixed; /* Stays in the viewport background */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Ensure it's behind all main content but visible */
+  pointer-events: none; /* Allows clicks to pass through to elements beneath */
+}
+
+/* Header Component */
+app-header {
+  position: relative; /* Above matrix rain */
+  z-index: 10; /* Ensures it's always on top of matrix rain and pages */
+  background-color: rgba(0, 0, 0, 0.8); /* Example semi-transparent background */
+  padding: 15px 0;
+}
+
+/* Page Transition Wrapper - this is the container for the animating pages */
+.page-transition-wrapper {
+  flex-grow: 1; /* Allows this div to take up all available vertical space */
+  position: relative; /* **CRITICAL:** Establishes positioning context for `position: absolute` children */
+  overflow: hidden; /* **CRITICAL:** Hides the part of the page that slides off-screen */
+  width: 100%;
+  /* These min-heights should ensure content area has space. */
+  /* If header/footer heights are dynamic, CSS variables or JS calculation might be needed. */
+  min-height: calc(100vh - var(--header-height, 80px) - var(--footer-height, 50px));
+}
+
+/* Page Container - direct parent of router-outlet content */
+.page-container {
+  position: relative; /* **CRITICAL:** Also acts as a positioning context for the animating pages */
+  width: 100%;
+  height: 100%; /* Makes it take full height of its parent (.page-transition-wrapper) */
+  min-height: calc(100vh - var(--header-height, 80px) - var(--footer-height, 50px)); /* Ensure minimum height */
+}
+
+/* Target for components rendered by router-outlet */
+.page-container > router-outlet + * {
+  position: absolute; /* **CRITICAL:** Allows pages to layer and slide */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto; /* Allows content to dictate height, enabling scrolling if content is long */
+  min-height: 100%; /* Ensures page takes at least full container height */
+  box-sizing: border-box; /* Ensures padding/border are included in the element's total dimensions */
+  background-color: rgba(0, 0, 0, 0.9); /* A dark, slightly transparent background for the page content */
+  padding: 20px; /* Example padding for your content */
+  z-index: 2; /* Default z-index for pages to be above matrix rain */
+}
+
+/* Z-index management for animating pages: */
+/* Pages that are not currently animating (i.e., the one about to leave) */
+.page-container > router-outlet ~ *:not(.ng-animating) {
+    z-index: 2; /* The active page before the new one slides in, should be above matrix rain */
+}
+
+/* Pages that are actively animating (entering or leaving) */
+.page-container > router-outlet ~ *.ng-animating {
+    z-index: 3; /* Bring animating page to the very front during transition */
+}
+
+/* Ensure the currently displayed page (after animation finishes and it's at left: 0%) is also on top */
+.page-container > router-outlet ~ *[style*="left: 0%"] {
+    z-index: 2; /* Keep the current active page above the matrix rain */
+}
+
+/* *** CRITICAL FIX: Ensure page components are ABSOLUTELY positioned by the animation context *** */
+/* This ensures Angular's animation can control their position and they don't break flow. */
+/* No `!important` needed here if component CSS doesn't fight it directly. */
+/* We're letting the animation system's query handle the 'position: absolute' */
+/* However, if your specific component CSS files have `position: fixed` or `position: absolute` */
+/* on their root elements, you MUST remove them from those files. */
+app-about,
+app-contact,
+app-portfolio {
+  /* Do not set position here. Let the animation's `query` and `style` property handle it. */
+  /* If you are finding that `position: fixed` or `absolute` is still being applied, */
+  /* it's coming from an inline style in HTML or from their component's CSS files. */
+  display: block; /* Ensure they behave as block elements for layout */
+  box-sizing: border-box; /* Consistent sizing */
+  /* A robust background color for the component itself to cover matrix rain */
+  background-color: var(--your-page-background-color, rgba(0, 0, 0, 0.9));
+}
+
+/* Footer Component */
+app-footer {
+  position: relative; /* Above matrix rain */
+  z-index: 10;
+  margin-top: auto; /* Pushes footer to the bottom if app-root is flex-column */
+  background-color: rgba(0, 0, 0, 0.8); /* Example semi-transparent background */
+  padding: 15px 0;
+}
+
+/* Define CSS variables (if you're using them) */
+:root {
+  --header-height: 80px; /* Example value, adjust to your actual header height */
+  --footer-height: 50px; /* Example value, adjust to your actual footer height */
+  --your-page-background-color: rgba(0, 0, 0, 0.9); /* Consistent page background */
+}

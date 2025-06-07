@@ -29,8 +29,7 @@ export class MatrixRainComponent implements OnInit, OnDestroy {
     window.addEventListener("resize", this.handleResizeBound); // Use bound method for event listener
     this.draw(); // Start the animation
 
-    // Optional: Hide scrollbars if they appear due to background
-    document.body.style.overflow = 'hidden';
+
   }
 
   ngOnDestroy() {

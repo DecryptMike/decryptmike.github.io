@@ -1,8 +1,11 @@
 <app-matrix-rain></app-matrix-rain>
 
-<div class="content-wrapper">
-  <app-header></app-header>
-  <main class="main-content">
-    <router-outlet></router-outlet> </main>
-  <app-footer></app-footer>
+<app-header></app-header>
+
+<div class="page-transition-wrapper">
+  <div class="page-container" [@routeAnimations]="prepareRoute(outlet)">
+    <router-outlet #outlet="outlet"></router-outlet>
+  </div>
 </div>
+
+<app-footer></app-footer>

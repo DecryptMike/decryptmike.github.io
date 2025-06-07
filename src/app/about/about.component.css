@@ -1,0 +1,459 @@
+/* src/app/about/about.component.css */ 
+
+.about-page-container {
+  padding: 0px 0px;
+  max-width: auto;
+  margin: 0px 0px;
+  color: #e0e0e0;
+  position: relative;
+  z-index: 2;
+}
+
+/* Global glowing-box style */
+.glowing-box {
+  background-color: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(52, 211, 153, 0.6);
+  border-radius: 8px;
+  padding: 30px 10px;
+  margin-top: 40px; /* This is the general top margin for ALL glowing boxes */
+  margin-bottom: 30px;
+  box-shadow: 0 0 15px rgba(52, 211, 153, 0.7);
+  transition: all 0.3s ease-in-out;
+  box-sizing: border-box;
+  max-width: 1400px; /* Standardized max-width */
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+/* --- START OF NEW/UPDATED RULE FOR "MY JOURNEY" BOX --- */
+/* Specific spacing for the "My Journey" glowing box (the outer one) */
+/* This targets the .about-content-wrapper.glowing-box that contains a .about-intro.full-width-intro */
+.about-content-wrapper.glowing-box:has(.about-intro.full-width-intro) {
+  margin-bottom: 45px;
+  }
+/* --- END OF NEW/UPDATED RULE --- */
+
+.glowing-box:hover {
+  box-shadow: 0 0 25px rgba(52, 211, 153, 1);
+  transform: translateY(-2px);
+}
+
+.about-content-wrapper.full-width-text-section {
+  display: block;
+  text-align: center;
+}
+
+.about-content-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin-bottom: 25px;
+  gap: 0px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.about-intro {
+  flex: 1;
+  min-width: 400px;
+  max-width: 600px;
+  padding: 0px;
+}
+
+.about-intro.main-intro-block {
+  min-width: auto;
+  width: 100%;
+  max-width: 100%;
+  text-align: center;
+}
+
+.about-intro.full-width-intro {
+  width: 100%;
+  max-width: 100%;
+}
+
+.my-name {
+  font-family: 'Matrix', sans-serif;
+  font-size: 3.5rem;
+  font-weight: bold;
+  color: #34d399;
+  text-shadow: 0 0 15px rgba(52, 211, 153, 0.8);
+  line-height: 1.2;
+  margin-bottom: 25px;
+  letter-spacing: 0px;
+  text-align: center;
+  display: block;
+  margin-top: 0;
+  width: fit-content;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-content-wrapper.full-width-text-section.glowing-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 30px;
+}
+
+.section-title {
+  font-size: 3.5rem;
+  color: #34d399;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 8px;
+  margin-bottom: 38px;
+  text-shadow: 0 0 10px #34d399;
+  font-family: 'Matrix', monospace;
+  display: block;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.about-text {
+  font-size: 1.0rem;
+  text-align: center;
+  font-family: 'Matrix 1', sans-serif;
+  margin-bottom: 22px;
+  display: block;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+.about-content-wrapper.reverse-layout {
+  flex-direction: row-reverse;
+}
+
+/* Base styles for all image collage blocks */
+/* This element should now have the .glowing-card class in its HTML */
+.image-collage-block {
+  flex: 1.2; /* Allows it to take more space than text on desktop */
+  min-width: 280px; /* Min width before it starts wrapping/resizing aggressively */
+  max-width: 600px; /* Max width for individual blocks on larger screens */
+  display: grid; /* Keep as grid for all screen sizes */
+  gap: 12px;
+  box-sizing: border-box;
+}
+
+/* Collage Type A: 2 Small Top, 1 Big Bottom */
+/* These rules define the grid columns for desktop layout */
+.image-collage-block.type-A,
+.image-collage-block.combined-A {
+  grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+  grid-template-rows: auto auto;
+}
+.image-collage-block.type-A .collage-item-small:nth-child(1),
+.image-collage-block.combined-A .collage-item-small:nth-child(1) { grid-column: 1 / 2; grid-row: 1 / 2; }
+.image-collage-block.type-A .collage-item-small:nth-child(2),
+.image-collage-block.combined-A .collage-item-small:nth-child(2) { grid-column: 2 / 3; grid-row: 1 / 2; }
+.image-collage-block.type-A .collage-item-large:nth-child(3),
+.image-collage-block.combined-A .collage-item-large:nth-child(3) {
+  grid-column: 1 / span 2;
+  grid-row: 2 / 3;
+}
+
+/* Collage Type B: 1 Big Top, 2 Small Bottom */
+/* These rules define the grid columns for desktop layout */
+.image-collage-block.type-B,
+.image-collage-block.combined-B {
+  grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+  grid-template-rows: auto auto;
+}
+.image-collage-block.type-B .collage-item-large:nth-child(1),
+.image-collage-block.combined-B .collage-item-large:nth-child(1) {
+  grid-column: 1 / span 2;
+  grid-row: 1 / 2;
+}
+.image-collage-block.type-B .collage-item-small:nth-child(2),
+.image-collage-block.combined-B .collage-item-small:nth-child(2) { grid-column: 1 / 2; grid-row: 2 / 3; }
+.image-collage-block.type-B .collage-item-small:nth-child(3),
+.image-collage-block.combined-B .collage-item-small:nth-child(3) { grid-column: 2 / 3; grid-row: 2 / 3; }
+
+/* Styles for individual images within the collage */
+.collage-image {
+  width: 100%;
+  height: 170px; /* Allow height to adjust based on width for all images */
+  object-fit: cover;
+  border-radius: 8px;
+  filter: grayscale(70%) brightness(100%);
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+}
+
+/* Specific height for the large image items on desktop */
+.collage-item-large .collage-image {
+  height: 350px; /* <-- MODIFIED: Force exact height for large images */
+  max-height: 350px; /* Keep a max height for desktop layout */
+}
+
+/* Hover effect for all collage images */
+.collage-image:hover {
+  transform: scale(1.03);
+  filter: grayscale(0%) brightness(100%);
+  box-shadow: 0 0 20px rgba(52, 211, 153, 0.8);
+}
+
+/* Styles for the combined 6-image collage sections */
+.combined-6-image-collage {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 45px;
+  margin-bottom: 45px;
+  width: 100%;
+  /* Match table max-width for desktop consistency */
+  max-width: 1430px; /* Aligned with .about-table-wrapper max-width */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+.combined-6-image-collage .image-collage-block {
+  flex: 1; /* Allows individual blocks to take equal space */
+  min-width: 280px; /* Allows individual blocks to shrink */
+  max-width: 900px; /* Max width for individual blocks in combined section */
+  box-sizing: border-box;
+}
+
+
+/* YouTube Video Section and Embeds */
+.youtube-embed {
+  max-width: 600px;
+  width: 100%;
+  flex: 1;
+  min-width: 300px;
+  position: relative;
+  padding-bottom: 0%;
+  height: 0;
+  overflow: hidden;
+}
+
+.youtube-embed iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 12px;
+}
+
+.youtube-videos-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+/* --- NEW STYLES FOR TABLES ON ABOUT PAGE --- */
+.about-table-wrapper {
+  max-width: 1360px; /* Adjusted to match portfolio content width */
+  margin: 40px auto;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+.about-table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(52, 211, 153, 0.4);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.about-table-wrapper th,
+.about-table-wrapper td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid rgba(52, 211, 153, 0.2);
+  color: #e0e0e0;
+}
+
+.about-table-wrapper th {
+  background-color: rgba(52, 211, 153, 0.2);
+  color: #34d399;
+  font-weight: bold;
+  font-family: 'Matrix', monospace;
+  font-size: 1.1rem;
+}
+
+.about-table-wrapper td {
+  font-family: 'Matrix 1', sans-serif;
+  font-size: 1rem;
+}
+
+.about-table-wrapper tr:last-child td {
+  border-bottom: none;
+}
+
+.about-table-wrapper tbody tr:hover {
+  background-color: rgba(52, 211, 153, 0.1);
+}
+
+/* Responsive Adjustments for layout */
+@media (max-width: 992px) {
+  .about-content-wrapper,
+  .combined-6-image-collage {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-intro,
+  .image-collage-block,
+  .combined-6-image-collage .image-collage-block {
+    min-width: unset; /* Allow it to shrink freely */
+    width: 90%; /* Take up 90% of the screen width */
+    max-width: 600px; /* Keep a reasonable max-width for tablets */
+    padding: 0px; /* Ensure no internal padding from glowing-box is causing issues */
+  }
+
+  .about-intro.full-width-intro,
+  .about-intro.main-intro-block {
+    width: 90%;
+    min-width: unset;
+  }
+
+  .section-title,
+  .about-text {
+    max-width: 100%;
+  }
+  .my-name {
+    max-width: 100%;
+  }
+
+  /* CRITICAL OVERRIDES for image collages on mobile to force fluid grid */
+  .image-collage-block.type-A,
+  .image-collage-block.type-B,
+  .image-collage-block.combined-A,
+  .image-collage-block.combined-B {
+    /* Attempt to force 2 fluid columns that can scale down */
+    grid-template-columns: repeat(2, 1fr) !important; /* Forces two fluid columns */
+    grid-template-rows: auto auto !important; /* Maintain auto rows */
+    gap: 10px !important; /* Adjust gap for mobile */
+    /* Ensure no unwanted min-width/max-width from other sources */
+    min-width: unset !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Ensure images fill their grid cells */
+  .collage-image,
+  .collage-item-small .collage-image,
+  .collage-item-large .collage-image {
+    width: 100% !important; /* Images take full width of their grid cell */
+    height: auto !important; /* Maintain aspect ratio */
+    max-height: 150px !important; /* Set a maximum height for smaller images on mobile */
+  }
+
+  .collage-item-large .collage-image {
+    max-height: 250px !important; /* Slightly larger max-height for big images on mobile */
+  }
+
+  .youtube-videos-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .about-table-wrapper {
+    max-width: 95%;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .my-name {
+    font-size: 2.8rem;
+  }
+  .section-title {
+    font-size: 2.8rem;
+  }
+
+  .about-table-wrapper {
+    max-width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 5px;
+  }
+
+  .about-table-wrapper th,
+  .about-table-wrapper td {
+    padding: 8px 10px;
+    font-size: 1.0rem;
+  }
+
+  .about-table-wrapper th {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-page-container {
+    padding: 15px 20px;
+  }
+
+  .my-name {
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+  }
+  .section-title {
+    font-size: 2.2rem;
+  }
+
+  .about-intro,
+  .image-collage-block,
+  .youtube-embed {
+    padding: 0px;
+    width: 100%;
+    min-width: unset;
+  }
+
+  /* Force single column layout on very small screens for better readability */
+  .image-collage-block.type-A,
+  .image-collage-block.type-B,
+  .image-collage-block.combined-A,
+  .image-collage-block.combined-B {
+    grid-template-columns: 1fr !important; /* Forces single column */
+    grid-template-rows: auto auto auto !important; /* Ensure enough rows for all images */
+    gap: 10px !important;
+  }
+  /* For single column layout, small items will be on their own row */
+  .image-collage-block.type-A .collage-item-small:nth-child(1),
+  .image-collage-block.combined-A .collage-item-small:nth-child(1) { grid-column: 1 / 2 !important; grid-row: 1 / 2 !important; }
+  .image-collage-block.type-A .collage-item-small:nth-child(2),
+  .image-collage-block.combined-A .collage-item-small:nth-child(2) { grid-column: 1 / 2 !important; grid-row: 2 / 3 !important; }
+  .image-collage-block.type-A .collage-item-large:nth-child(3),
+  .image-collage-block.combined-A .collage-item-large:nth-child(3) {
+    grid-column: 1 / 2 !important;
+    grid-row: 3 / 4 !important;
+  }
+
+  .image-collage-block.type-B .collage-item-large:nth-child(1),
+  .image-collage-block.combined-B .collage-item-large:nth-child(1) {
+    grid-column: 1 / 2 !important;
+    grid-row: 1 / 2 !important;
+  }
+  .image-collage-block.type-B .collage-item-small:nth-child(2),
+  .image-collage-block.combined-B .collage-item-small:nth-child(2) { grid-column: 1 / 2 !important; grid-row: 2 / 3 !important; }
+  .image-collage-block.type-B .collage-item-small:nth-child(3),
+  .image-collage-block.combined-B .collage-item-small:nth-child(3) { grid-column: 1 / 2 !important; grid-row: 3 / 4 !important; }
+
+
+  .collage-image,
+  .collage-item-large .collage-image {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 160px !important;
+    object-fit: cover;
+  }
+}

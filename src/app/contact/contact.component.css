@@ -1,0 +1,171 @@
+/* src/app/contact/contact.component.css */
+
+/* Container for the entire contact page */
+.contact-page-container {
+  display: flex;
+  justify-content: center; /* Center the card horizontally */
+  align-items: center;     /* Center the card vertically */
+  min-height: 100vh;       /* Ensure it takes full viewport height for centering */
+  padding: 40px 20px;      /* Add some padding for smaller screens */
+  box-sizing: border-box;  /* Include padding in element's total width and height */
+
+  position: relative;      /* Establishes positioning context for map background */
+}
+
+/* Styles for the map background container */
+.map-background-container {
+  position: absolute; /* Position relative to .contact-page-container */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Keep it behind the contact card */
+}
+
+/* The transparent black overlay for the map */
+.map-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Transparent black */
+  z-index: 1; /* Above the map, below the contact card */
+
+  pointer-events: none; /* Allows clicks/interactions to pass through to the map below if needed */
+}
+
+/* Style the iframe to fill its container */
+.map-background-container iframe {
+  display: block; /* Remove any default iframe spacing */
+  width: 100%;
+  height: 100%;
+  opacity: 0.8; /* Make the iframe itself slightly transparent */
+  /* Optional: filter to desaturate/blur the map if desired */
+  /* filter: grayscale(100%) blur(3px); */
+}
+
+
+/* --- CONTACT CARD STYLES --- */
+.contact-card {
+  background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent dark background */
+  border-radius: 15px; /* Rounded corners */
+  padding: 25px 40px;
+  max-width: 600px; /* Max width for the card */
+  width: 50%; /* Make it fill available width on desktop */
+  text-align: center;
+  box-shadow: 0 0 15px rgba(52, 211, 153, 0.7); /* Subtle green glow */
+  color: #e0e0e0; /* Light text color */
+  position: relative; /* Essential: Ensure it's positioned relative to the container */
+  z-index: 2; /* Ensure it's above the map and its overlay */
+
+  /* --- DESKTOP POSITIONING: Move the box to the bottom right --- */
+  transform: translate(500px, 85px); /* Move 350px right, 85px down */
+  transition: transform 0.3s ease-out; /* Smooth movement when transform changes */
+}
+
+.card-title {
+  font-size: 3rem;
+  color: #34d399; /* Green color */
+  margin-top: 12px;
+  margin-bottom: 20px;
+  font-family: 'Matrix', monospace; /* Apply your custom font */
+  text-shadow: 0 0 8px #34d399; /* Glow effect */
+}
+
+.card-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  font-family: 'Matrix 1', sans-serif;
+}
+
+.contact-image-wrapper {
+  margin-bottom: 30px;
+}
+
+.contact-image {
+  max-width: 150%; /* Adjust size as needed */
+  height: auto;
+  border-radius: 10px; /* Optional: slightly rounded image corners */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4); /* Optional: shadow for the image */
+}
+
+.linkedin-button {
+  display: inline-block; /* Allows padding and margin */
+  background-color: #34d399; /* Green button background */
+  color: #000; /* Dark text on button */
+  padding: 15px 30px;
+  border-radius: 8px;
+  text-decoration: none; /* Remove underline */
+  font-family: 'Matrix 1', sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px; /* Space below the button */
+  box-shadow: 0 0 10px rgba(52, 211, 153, 0.6); /* Glow on the button */
+}
+
+.linkedin-button:hover {
+  background-color: #6ee7b7; /* Lighter green on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+  box-shadow: 0 0 15px #6ee7b7; /* Enhanced glow on hover */
+}
+
+.closing-text {
+  font-size: 1rem;
+  font-family: 'Matrix 1', sans-serif;
+  color: #c0c0c0;
+  margin-top: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .contact-card {
+      /* MOBILE POSITIONING: Reset transform to center the card */
+      transform: translate(0, 0); /* <-- KEY CHANGE for mobile centering */
+
+      width: auto; /* Allow width to adjust based on max-width and margin */
+      max-width: 90%; /* Limit card width on smaller screens */
+      padding: 20px; /* Add internal padding for content on mobile */
+      margin: 0 auto; /* Center horizontally with auto margins */
+      /* Optionally, if you want a little space from top/bottom of viewport on mobile */
+      /* margin-top: 40px; */
+      /* margin-bottom: 40px; */
+  }
+
+  .card-title {
+      font-size: 2rem;
+  }
+
+  .card-description {
+      font-size: 1rem;
+  }
+
+  .linkedin-button {
+    /* --- KEY CHANGES FOR CENTERING ON MOBILE --- */
+    display: block; /* Make the button a block-level element */
+    margin: 0 auto 20px auto; /* Center horizontally (0 for top/bottom, auto for left/right), and keep bottom margin */
+    /* Keep previous mobile size adjustments */
+    padding: 10px 0px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-card {
+      padding: 15px; /* Adjust padding for very small screens */
+      margin: 0 auto; /* Ensure centering */
+      /* Optionally, if you want a little space from top/bottom of viewport on mobile */
+      /* margin-top: 30px; */
+      /* margin-bottom: 30px; */
+  }
+
+  .card-title {
+      font-size: 1.8rem;
+  }
+
+  .linkedin-button {
+      width: 90%; /* Make button wider on very small screens */
+  }
+}

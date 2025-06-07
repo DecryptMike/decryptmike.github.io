@@ -1,15 +1,17 @@
 // src/main.ts
 
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideRouter } from '@angular/router'; // CRITICAL: Import provideRouter
+import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
-import { routes } from './app/app.routes'; // CRITICAL: Import your routes
 
-// (Environment imports and enableProdMode should be removed or commented out)
+// No need to import provideAnimations here anymore as it's in app.config.ts
+// import { provideAnimations } from '@angular/platform-browser/animations';
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideRouter(routes) // CRITICAL: Provide the router with your defined routes
+    // This is the CRITICAL line that brings in all providers from app.config.ts (routing, animations)
+    ...appConfig.providers,
+
+    // Do NOT add provideAnimations() here again if it's in app.config.ts
   ]
-})
-.catch(err => console.error(err));
+}).catch((err) => console.error(err));

@@ -1,31 +1,292 @@
+/* src/app/footer/footer.component.css */
+
 .footer-container {
-    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
-    color: #34d399; /* Green text color */
-    padding: 1.5rem 2rem;
-    text-align: center;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
-    margin-top: auto; /* Pushes the footer to the bottom if content is short */
-    width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #e0e0e0;
+  padding: 40px 20px;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+  border-top: 1px solid rgba(52, 211, 153, 0.3);
+}
+
+.footer-content {
+  display: grid; /* CHANGE: Use Grid for better control of sections */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Auto-fit columns */
+  gap: 100px; /* Consistent gap between all grid items (sections) */
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footer-section {
+  /* Removed flex: 1 and min-width here as grid handles sizing */
+  margin-bottom: 0; /* REMOVE or set to 0. Grid gap handles spacing */
+  text-align: left; /* Default alignment for wider screens */
+  box-sizing: border-box; /* Ensure padding is included */
+}
+
+/* Specific styling for the 'about' section to maintain its width on larger screens */
+.footer-section.about-section {
+    grid-column: span 1; /* Ensure it only takes 1 column in the grid */
+    max-width: 300px; /* Limit width of the about section to match the image */
+    justify-self: start; /* Align to the start of its grid column */
+}
+
+/* Specific styling for the 'links-section' that contains skills lists */
+.footer-section.links-section {
+    display: flex; /* Use flexbox to stack titles and lists within this section */
+    flex-direction: column;
+    /* Optional: If content within links-section often causes issues, align start */
+    /* align-items: flex-start; */
+}
+
+
+.about-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-logo-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  margin-bottom: 1px;
+}
+
+.footer-logo-image {
+  height: 40px;
+  width: 40px;
+  margin-right: 8px;
+  filter: drop-shadow(0 0 5px #34d399);
+  transition: filter 0.3s ease;
+}
+
+.footer-logo-image:hover {
+  filter: drop-shadow(0 0 10px #34d399);
+}
+
+.footer-logo-text {
+  font-size: 2.0rem;
+  font-weight: bold;
+  color: #34d399;
+  text-shadow: 0 0 5px #34d399;
+  font-family: 'Matrix', sans-serif;
+}
+
+.about-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #c0c0c0;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  color: #34d399;
+  margin-bottom: 15px;
+  text-shadow: 0 0 5px rgba(52, 211, 153, 0.5);
+}
+
+.repo-list {
+  list-style: none;
+  line-height: 1.4;
+  padding: 0;
+  margin: 0 0 25px 0; /* Add bottom margin to repo lists themselves */
+}
+
+/* No margin on the last repo-list if it's the last element in its section */
+.links-section > .repo-list:last-of-type {
+    margin-bottom: 0;
+}
+
+
+.repo-list li {
+  margin-bottom: 8px;
+}
+
+.repo-link {
+  color: #e0e0e0;
+  text-decoration: none;
+  font-size: 1rem;
+  position: relative;
+  padding-bottom: 2px;
+  display: inline-block;
+  transition: color 0.3s ease;
+}
+
+.repo-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1px;
+  background-color: #6ee7b7;
+  transition: width 0.3s ease-out;
+}
+
+.repo-link:hover {
+  color: #6ee7b7;
+}
+
+.repo-link:hover::after {
+  width: 100%;
+}
+
+.social-media-section {
+  margin-top: 30px; /* This margin is fine if it always follows a repo list */
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.social-icons a {
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.social-icons a:nth-child(n+2) {
+    margin-left: 20px;
+}
+
+.social-icons .github-icon {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  filter: grayscale(100%) brightness(110%);
+  transition: filter 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.social-icons .linkedin-icon {
+  width: 53px;
+  height: 53px;
+  object-fit: contain;
+  filter: grayscale(100%) brightness(110%);
+  transition: filter 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.social-icons .gitlab-icon {
+  width: 39px;
+  height: 39px;
+  object-fit: contain;
+  filter: grayscale(100%) brightness(110%);
+  transition: filter 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.social-icons a:hover .github-icon {
+  transform: translateY(-3px);
+  filter: grayscale(0%) brightness(100%);
+}
+
+.social-icons a:hover .linkedin-icon {
+  transform: translateY(-3px);
+  filter: grayscale(0%) brightness(100%);
+}
+
+.social-icons a:hover .gitlab-icon {
+  transform: translateY(-3px);
+  filter: grayscale(0%) brightness(100%);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-bottom .copyright-text {
+  color: #34d399;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Responsive adjustments for footer */
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Keep two columns if possible */
+    gap: 20px; /* Smaller gap for tablets */
   }
-  
-  .footer-container p {
-    margin: 0;
+
+  /* Specific adjustment for the 'about' section on tablets */
+  .footer-section.about-section {
+      grid-column: span 1; /* Still takes 1 column */
+      max-width: 100%; /* Allow it to expand more */
+      justify-self: center; /* Center it */
+  }
+
+  .footer-section {
+    text-align: center; /* Center text within each section */
+  }
+
+  .footer-logo-link {
+    justify-content: center; /* Center logo and text within the link */
+  }
+
+  .repo-list {
+    margin: 0 0 15px 0; /* Adjust margin-bottom for tablet lists */
+    display: flex; /* For possible wrapping of links within a list */
+    flex-wrap: wrap;
+    justify-content: center; /* Center the links themselves */
+    gap: 5px 15px; /* Smaller gap between wrapped links */
+  }
+
+  .social-icons a:nth-child(n+2) {
+    margin-left: 20px;
+  }
+}
+
+/* Further adjustments for very small mobile screens (e.g., phones) */
+@media (max-width: 480px) {
+  .footer-container {
+    padding: 25px 15px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr; /* Stack all sections into a single column */
+    gap: 15px; /* Even smaller gap when stacked vertically */
+  }
+
+  .footer-section {
+    margin-bottom: 0; /* Grid gap handles spacing */
+    width: 100%; /* Ensure full width when stacked */
+    max-width: 350px; /* Optional: limit width for very long single columns */
+    margin-left: auto;
+    margin-right: auto; /* Center individual sections when stacked */
+  }
+
+  /* Ensure about section centers when alone in a column */
+  .footer-section.about-section {
+      grid-column: 1 / -1; /* Take full width when 1 column */
+      text-align: center;
+  }
+
+  .repo-list {
+    margin: 0 0 10px 0; /* Adjust margin-bottom for phone lists */
+    gap: 5px 10px; /* Tighter gap for wrapped links */
+  }
+
+  .footer-logo-text {
+    font-size: 1.8rem;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+  }
+
+  .about-text, .repo-link, .copyright-text {
     font-size: 0.9rem;
   }
-  
-  .footer-container .social-links {
-    margin-top: 0.8rem;
+
+  .social-icons a:nth-child(n+2) {
+      margin-left: 15px;
   }
-  
-  .footer-container .social-links a {
-    color: #34d399;
-    text-decoration: none;
-    margin: 0 0.7rem;
-    font-weight: 500;
-    transition: color 0.3s ease, text-shadow 0.3s ease;
-  }
-  
-  .footer-container .social-links a:hover {
-    color: #6ee7b7; /* Lighter green on hover */
-    text-shadow: 0 0 8px #6ee7b7;
-  }
+}
